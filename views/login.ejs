@@ -1,0 +1,43 @@
+<%- include("parts/header") %>
+
+<section class="d-flex align-items-center justify-content-center">
+  <div
+    class="container d-flex flex-column align-items-center justify-content-center"
+  >
+    <h2 class="text-center my-2">Login</h2>
+    <form action="/login" method="POST" class="col-lg-6 col-12">
+      <% if(error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+      <% } %>
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          id="floatingInput"
+          minlength="3"
+          placeholder="name@example.com"
+          required
+          autocomplete="off"
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input
+          minlength="6"
+          type="password"
+          name="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+          required
+          autocomplete="off"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+      <button class="btn btn-primary w-100 my-2" type="submit">Login</button>
+    </form>
+  </div>
+</section>
+
+<%- include("parts/footer") %>

@@ -9,12 +9,22 @@
         <li class="nav-item">
           <a class="nav-link <%= path==="/" ? "active" : "" %>" aria-current="page" href="/">Home</a>
         </li>
+        <% if(!user_name) { %>
         <li class="nav-item">
           <a class="nav-link <%= path==="/login" ? "active" : "" %>" aria-current="page" href="/login">Log In</a>
         </li>
         <li class="nav-item">
           <a class="nav-link <%= path==="/signup" ? "active" : "" %>" aria-current="page" href="/signup">Sign Up</a>
         </li>
+        <% } %>
+        <% if(user_name) { %>
+        <li class="nav-item">
+          <a class="nav-link <%= path==="/exit" ? "active" : "" %>" aria-current="page" href="/exit">Exit</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <%= path==="/profile" ? "active" : "" %>" aria-current="page" href="/profile">Profile</a>
+        </li>
+          <% } %>
       </ul>
     </div>
   </div>

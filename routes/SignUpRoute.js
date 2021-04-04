@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
     title: "Sign Up",
     path: "/signup",
     error: "",
+    user_name: req.user?.name,
   });
 });
 
@@ -26,14 +27,16 @@ router.post("/", async (req, res) => {
       name: name,
       email: email,
       password: await generateCrypt(password),
+      is_confirmed: false,
     };
     await addUser(obj);
-    res.redirect("/signup");
+    res.redirect("/login");
   } catch (e) {
     res.render("signup", {
       title: "Sign Up",
       path: "/signup",
       error: e + "",
+      user_name: req.user?.name,
     });
   }
 });

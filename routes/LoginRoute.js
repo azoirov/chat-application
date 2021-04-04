@@ -3,12 +3,14 @@ const { readFile } = require("../modules/database");
 const router = require("express").Router();
 const path = require("path");
 const { confirmHash } = require("../modules/hash");
+const { generateToken } = require("../modules/jwt");
 
 router.get("/", (req, res) => {
   res.render("login", {
     title: "Log In",
     path: "/login",
     error: "",
+    user_name: req?.user?.name,
   });
 });
 
@@ -22,12 +24,15 @@ router.post("/", async (req, res) => {
     if (!user) throw "Email is not registered";
     let isTrust = await confirmHash(password, user.password);
     if (!isTrust) throw `Incorrect password for ${user.email}`;
+    let token = generateToken({ id: user.id });
+    res.cookie("token", token);
     res.redirect("/");
   } catch (e) {
     res.render("login", {
       title: "Log In",
       path: "/login",
       error: e + "",
+      user_name: req?.user?.name,
     });
   }
 });

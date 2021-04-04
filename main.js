@@ -2,7 +2,6 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-
 require("dotenv").config();
 // Import modules End --
 
@@ -13,6 +12,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+const authMiddleware = require("./middlewares/auth");
+app.use(authMiddleware);
 // Middlewares End --
 
 // Settings Start --
@@ -32,5 +36,5 @@ fs.readdir(routesPath, (err, files) => {
 
 // Listen Start --
 const PORT = process.env.PORT;
-app.listen(PORT, () => console.log(`SERVER READY AT localhost:${8080}/`));
+app.listen(PORT, () => console.log(`SERVER READY AT localhost:${PORT}/`));
 // Listen End --

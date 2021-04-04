@@ -1,14 +1,11 @@
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
-  res.render("index", {
-    title: "Home Page",
-    path: "/",
-    user_name: req.user?.name,
-  });
+  res.clearCookie("token");
+  res.redirect("/");
 });
 
 module.exports = {
-  path: "/",
+  path: "/exit",
   router: router,
 };

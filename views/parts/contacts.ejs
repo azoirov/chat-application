@@ -1,0 +1,12 @@
+<% if(!userMess?.name) { %>
+<div class="mt-5 mx-5 w-100 d-flex flex-column">
+  <input type="text" placeholder="Search..." class="px-2 form-control w-100" />
+  <div class="w-100 h-50 overflow-auto">
+    <% for(let user of chats) { %>
+    <a href="/chat/<%= user.id%>" class="w-100 btn btn-light mt-2"
+      ><%= user.name %></a
+    >
+    <% } %>
+  </div>
+</div>
+<% } %>

@@ -1,0 +1,70 @@
+<%- include("parts/header") %> <% if(token) { %> <% if(userMess?.name) { %>
+<section class="container border d-flex mt-5" style="height: 75vh">
+  <% if(!userMess?.name) { %>
+  <div class="mt-5 mx-5 w-100 d-flex flex-column">
+    <input
+      type="text"
+      placeholder="Search..."
+      class="px-2 form-control w-100"
+    />
+    <div class="w-100 h-50 overflow-auto">
+      <a href="#" class="w-100 btn btn-light mt-2">Muhammad</a>
+      <a href="#" class="w-100 btn btn-light mt-2">Yunus</a>
+      <a href="#" class="w-100 btn btn-light mt-2">Asadbek</a>
+      <a href="#" class="w-100 btn btn-light mt-2">Zoirov</a>
+      <a href="#" class="w-100 btn btn-light mt-2">Farxod</a>
+      <a href="#" class="w-100 btn btn-light mt-2">Najot Ta'lim</a>
+      <a href="#" class="w-100 btn btn-light mt-2">Muhammad</a>
+      <a href="#" class="w-100 btn btn-light mt-2">Muhammad</a>
+      <a href="#" class="w-100 btn btn-light mt-2">Muhammad</a>
+      <a href="#" class="w-100 btn btn-light mt-2">Muhammad</a>
+    </div>
+  </div>
+  <% } %>
+  <div class="w-100 d-flex flex-column px-lg-5 px-1">
+    <span class="py-2 border-bottom text-center text-dark">
+      <strong><%= userMess?.name%></strong>
+    </span>
+    <div class="w-100 py-2 px-3 h-100 overflow-auto bg-light">
+      <% for(let message of messages) { %> <% if(user_id === message.from &&
+      userMess?.id === message.to) { %> <% if(user_id === message.from &&
+      userMess?.id === message.to) { %>
+      <span
+        class="d-flex flex-column ms-auto bg-success rounded w-25 mb-1 py-2 px-3 text-light mw-100 text-right"
+      >
+        <span class="ms-auto"><%= message.text %></span>
+        <span
+          style="font-size: 12px"
+          class="ms-auto text-warning text-monospace"
+          ><%= message.time %></span
+        >
+      </span>
+      <% } %> <% if(userMess.id === message.from && user_id === message.to) { %>
+      <span
+        class="d-flex flex-column me-auto bg-secondary mb-1 rounded w-25 py-2 px-3 text-light mw-50"
+      >
+        <span><%= message.text %></span>
+        <span style="font-size: 12px" class="text-warning text-monospace"
+          ><%= message.time %></span
+        >
+      </span>
+      <% } %> <% } %>
+    </div>
+    <form class="d-flex" action="/chat/<%= userMess?.id%>" method="POST">
+      <input
+        type="text"
+        name="mess"
+        placeholder="Type a message"
+        class="form-control"
+      />
+      <button class="btn btn-success" type="submit">
+        <i class="fab fa-telegram-plane"></i>
+      </button>
+    </form>
+  </div>
+</section>
+<% } %> <% if(!token) { %>
+<section class="w-100 d-flex justify-content-center align-items-center pt-5">
+  <a href="/login" class="w-25 btn btn-warning">Login</a>
+</section>
+<% } %> <%- include("parts/footer") %>

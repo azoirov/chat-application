@@ -19,8 +19,30 @@ async function readFile(path) {
   return JSON.parse(file);
 }
 
+async function addMess(obj) {
+  let filePath = path.join(__dirname, "messages.json");
+  try {
+    let res = await readFile(filePath);
+    let messages = res.messages;
+    let date = new Date();
+    let time = `${date.getHours()}:${date.getMinutes()}`;
+
+    messages.push({
+      from: obj.from,
+      to: obj.to,
+      text: obj.text,
+      time: time,
+    });
+
+    await writeFile(res, filePath);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 module.exports = {
   addUser,
   writeFile,
   readFile,
+  addMess,
 };

@@ -1,0 +1,48 @@
+<% if(userMess?.name) { %>
+<section class="w-100 d-flex flex-column px-lg-5 px-1">
+  <span class="py-2 border-bottom text-center text-dark">
+    <a href="/chat" class="pe-2">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i></a
+    ><strong><%= userMess?.name%></strong>
+  </span>
+  <section class="w-100 py-2 px-3 h-100 overflow-auto bg-light">
+    <% for(let message of messages) { %> <% if(user_id === message.from &&
+    userMess?.id === message.to) { %>
+    <span
+      class="d-flex flex-column ms-auto bg-success rounded mb-1 py-2 px-3 text-light mw-100"
+    >
+      <span class=""><%= message.text %></span>
+      <span style="font-size: 12px" class="text-warning text-monospace">
+        <%= message.time %>
+      </span>
+    </span>
+    <% } %> <% if(userMess.id === message.from && user_id === message.to) { %>
+    <span
+      class="d-flex flex-column me-auto bg-secondary mb-1 rounded py-2 px-3 text-light mw-50"
+    >
+      <span><%= message.text %></span>
+      <span style="font-size: 12px" class="text-warning text-monospace"
+        ><%= message.time %></span
+      >
+    </span>
+    <% } %> <% } %>
+  </section>
+  <form
+    action="/chat/<%= userMess?.id%>"
+    method="POST"
+    class="w-100 d-flex mt-3"
+  >
+    <input
+      type="text"
+      name="mess"
+      placeholder="Type a message"
+      class="form-control"
+      required
+      autocomplete="off"
+    />
+    <button class="btn btn-success" type="submit">
+      <i class="fab fa-telegram-plane"></i>
+    </button>
+  </form>
+</section>
+<% } %>

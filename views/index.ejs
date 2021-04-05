@@ -1,8 +1,11 @@
 <%- include("parts/header") %> 
 
 <main>
-    <div class="container mt-4 text-center">
+    <div class="container mt-5 text-center">
         <h1>Assalomu alaykum <%= user_name ? user_name : "Mehmon"%></h1>
+        <% if(user_name) { %>
+            <a class="mt-5 w-25 btn btn-primary" href="/chat">Chat</a>
+        <% } %>
     </div>
 </main>
 

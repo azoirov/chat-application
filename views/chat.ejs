@@ -1,0 +1,13 @@
+<%- include("parts/header") %> <% if(token) { %>
+
+<section class="container border d-flex mt-5" style="height: 75vh">
+  <%- include("parts/contacts") %> <%- include("parts/messages") %>
+</section>
+
+<% } %> <% if(!token) { %>
+
+<section class="w-100 d-flex justify-content-center align-items-center pt-5">
+  <a href="/login" class="w-25 btn btn-warning">Login</a>
+</section>
+
+<% } %> <%- include("parts/footer") %>
